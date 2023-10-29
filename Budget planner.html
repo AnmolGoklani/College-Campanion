@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Budget Planner for College Students</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF6B6B, #6B47FF);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        p {
+            text-align: center;
+            color: #fff;
+        }
+
+        #categories {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #categories h2 {
+            font-size: 24px;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .category-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        #expenses {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #expenses h2 {
+            font-size: 24px;
+        }
+
+        #expenses input[type="text"],
+        #expenses input[type="number"],
+        #expenses select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #add-expense {
+            background: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #add-expense:hover {
+            background: #45a049;
+        }
+
+
+.delete-button, #remove-limit {
+        background: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .delete-button:hover, #remove-limit:hover {
+        background: #45a049;
+    }
+
+
+
+
+
+ 
+    .delete-button {
+        background: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .delete-button:hover {
+        background: #45a049;
+    }
+
+        #expense-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #expense-list li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        #total-expenses {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        #category-totals {
+            list-style: none;
+            padding: 0;
+        }
+
+        #category-totals li {
+            font-size: 18px;
+        }
+
+        #budget {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #budget h2 {
+            font-size: 24px;
+        }
+
+        #limit-budget {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #set-limit {
+            background: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #set-limit:hover {
+            background: #45a049;
+        }
+
+        #budget-chart {
+            margin: 20px 0;
+        }
+
+        .category-icon img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Budget Planner for College Students</h1>
+
+    <p>Manage your college expenses in style!</p>
+
+    <div id="categories">
+        <h2>Categories</h2>
+        <div class="category-item">
+            <div class="category-icon">
+                <img src="food.jpg" alt="Food">
+            </div>
+            Food
+        </div>
+        <div class="category-item">
+            <div class="category-icon">
+                <img src="travel.png" alt="Travel">
+            </div>
+            Travel
+        </div>
+        <div class="category-item">
+            <div class="category-icon">
+                <img src="entertainment.jpeg" alt="Entertainment">
+            </div>
+            Entertainment
+        </div>
+        <div class="category-item">
+            <div class="category-icon">
+                <img src="C:\Users\Owner\Desktop\other.png" alt="Other">
+            </div>
+            Other
+        </div>
+        <!-- Add more categories here -->
+    </div>
+
+    <div id="expenses">
+        <h2>Expenses</h2>
+    <input type="text" id="expense-description" placeholder="Expense Description">
+    <input type="number" id="expense-amount" placeholder="Amount">
+    <select id="expense-category">
+    	<option value="Food">Food</option>
+    	<option value="Travel">Travel</option>
+    	<option value="Entertainment">Entertainment</option>
+    	<option value="Other">Other</option>
+    	<!-- Add more categories here -->
+    </select>
+    <button id="add-expense">Add Expense</button>
+
+    <ul id="expense-list">
+    	<!-- Expenses will be added here -->
+    </ul>
+
+    <h3>Total Expenses: ₹<span id="total-expenses">0.00</span></h3>
+
+    <h2>Category-wise Totals</h2>
+    <ul id="category-totals">
+    <!-- Category totals will be displayed here -->
+    </ul>
+
+    </div>
+
+    <div id="budget">
+        <h2>Budget Limit</h2>
+	<input type="number" id="limit-budget" placeholder="Enter your budget limit">
+	<button id="set-limit">Set Limit</button>
+	<button id="remove-limit">Remove Limit</button> <!-- Add the Remove Limit button -->
+	<div id="budget-chart">
+    	<canvas id="remaining-amount-chart"></canvas>
+	</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const expenseDescription = document.getElementById('expense-description');
+        const expenseAmount = document.getElementById('expense-amount');
+        const expenseCategory = document.getElementById('expense-category');
+        const addExpenseButton = document.getElementById('add-expense');
+        const setLimitButton = document.getElementById('set-limit');
+        const limitBudgetInput = document.getElementById('limit-budget');
+        const expenseList = document.getElementById('expense-list');
+        const totalExpenses = document.getElementById('total-expenses');
+        const categoryTotals = document.getElementById('category-totals');
+        const budgetChart = document.getElementById('remaining-amount-chart').getContext('2d');
+	const removeLimitButton = document.getElementById('remove-limit');
+
+        let expenses = [];
+        let budgetLimit = 0;
+
+        const budgetPieChart = new Chart(budgetChart, {
+            type: 'doughnut',
+            data: {
+                labels: ['Remaining amount', 'Expenses'],
+                datasets: [{
+                    data: [budgetLimit, 0],
+                    backgroundColor: ['#36A2EB', '#FF6384'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Remaining Amount'
+                }
+            }
+        });
+
+        // Load saved data from local storage
+        const savedExpenses = JSON.parse(localStorage.getItem('expenses'));
+        const savedBudgetLimit = parseFloat(localStorage.getItem('budgetLimit'));
+
+        if (savedExpenses) {
+            expenses = savedExpenses;
+            updateExpenseList();
+            updateCategoryTotals();
+            updateTotalExpenses();
+            updateRemainingAmount();
+        }
+
+        if (!isNaN(savedBudgetLimit)) {
+            budgetLimit = savedBudgetLimit;
+            limitBudgetInput.value = budgetLimit;
+            updateRemainingAmount();
+        }
+
+        addExpenseButton.addEventListener('click', () => {
+            const description = expenseDescription.value;
+            const amount = parseFloat(expenseAmount.value);
+            const category = expenseCategory.value;
+
+            if (description && !isNaN(amount)) {
+                expenses.push({ description, amount, category });
+                updateExpenseList();
+                updateCategoryTotals();
+                updateTotalExpenses();
+                expenseDescription.value = '';
+                expenseAmount.value = '';
+                updateRemainingAmount();
+                saveDataToLocalStorage();
+            }
+        });
+
+        setLimitButton.addEventListener('click', () => {
+            budgetLimit = parseFloat(limitBudgetInput.value) || 0;
+            updateRemainingAmount();
+            saveDataToLocalStorage();
+        });
+
+	removeLimitButton.addEventListener('click', () => {
+        budgetLimit = 0;
+        limitBudgetInput.value = '';
+        updateRemainingAmount();
+        saveDataToLocalStorage();
+    });
+
+        function updateExpenseList() {
+            expenseList.innerHTML = '';
+            expenses.forEach(expense => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${expense.description} - ₹${expense.amount.toFixed(2)} (${expense.category})`;
+                expenseList.appendChild(listItem);
+            });
+        }
+
+        function updateTotalExpenses() {
+            const total = expenses.reduce((acc, expense) => acc + expense.amount, 0);
+            totalExpenses.textContent = total.toFixed(2);
+        }
+
+        function updateCategoryTotals() {
+            const categoryTotalMap = {};
+
+            expenses.forEach(expense => {
+                if (!categoryTotalMap[expense.category]) {
+                    categoryTotalMap[expense.category] = 0;
+                }
+                categoryTotalMap[expense.category] += expense.amount;
+            });
+
+            categoryTotals.innerHTML = '';
+
+            for (const category in categoryTotalMap) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${category}: ₹${categoryTotalMap[category].toFixed(2)}`;
+                categoryTotals.appendChild(listItem);
+            }
+        }
+
+        function updateRemainingAmount() {
+            const totalExpenses = expenses.reduce((acc, expense) => acc + expense.amount, 0);
+            const remainingAmount = budgetLimit - totalExpenses;
+
+            budgetPieChart.data.datasets[0].data[0] = remainingAmount > 0 ? remainingAmount : 0;
+            budgetPieChart.data.datasets[0].data[1] = totalExpenses;
+            budgetPieChart.update();
+        }
+
+        function saveDataToLocalStorage() {
+            localStorage.setItem('expenses', JSON.stringify(expenses));
+            localStorage.setItem('budgetLimit', budgetLimit);
+        }
+
+	function createExpenseItem(expense, index) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${expense.description} - ₹${expense.amount.toFixed(2)} 	(${expense.category})`;
+        
+        // Create a delete button for the expense
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+	deleteButton.classList.add('delete-button'); 
+        deleteButton.addEventListener('click', () => {
+            expenses.splice(index, 1);
+            updateExpenseList();
+            updateCategoryTotals();
+            updateTotalExpenses();
+            updateRemainingAmount();
+            saveDataToLocalStorage();
+        });
+        
+        listItem.appendChild(deleteButton);
+        
+        return listItem;
+    }
+
+    function updateExpenseList() {
+        expenseList.innerHTML = '';
+        expenses.forEach((expense, index) => {
+            const listItem = createExpenseItem(expense, index);
+            expenseList.appendChild(listItem);
+        });
+    }
+	
+
+    </script>
+
+</body>
+
+</html>

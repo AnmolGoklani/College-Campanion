@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #b57eee, #f1a7fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background: url('tech-background.jpg') no-repeat;
+            background-size: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 30%;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin: 0;
+            color: white;
+            font-size: 24px;
+        }
+
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        button {
+            background: #8200ff;
+            background: linear-gradient(to bottom, #8200ff, #f759ab);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        button.login-button:hover {
+            background: #ff9a9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="login-button">Login</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.getElementById('login-button');
+
+            loginButton.addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                // Here, you can perform server-side operations like user authentication.
+
+                // Redirect to the chatbotf.html page after login
+                window.location.href = 'chatbot1.html';
+            });
+        });
+    </script>
+</body>
+</html>

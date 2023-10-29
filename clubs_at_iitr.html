@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clubs Information</title>
+    <style>
+      
+         
+ body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FF6B6B, #6B47FF);
+            margin: 0;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .option-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+
+        .club-info {
+            display: none;
+            text-align: left;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .club-info h2 {
+            color: #007bff;
+        }
+
+        .club-info p {
+            font-size: 18px;
+        }
+
+        .club-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <h1>Welcome to Club Information Page</h1>
+        <p>Choose a club to learn more:</p>
+        <div class="options">
+            <button class="option-button" id="techClub">Tech Clubs</button>
+            <button class="option-button" id="culturalClub">Cultural Clubs</button>
+        </div>
+
+        <div class="club-info" id="techInfo">
+            <h2>Tech Clubs</h2>
+            <button class="club-button" id="programmingClub">Programming and Algorithms Clubs</button>
+            <button class="club-button" id="infoManagementClub">Information Management Group</button>
+            <button class="club-button" id="sdsLabsClub">SDS Labs</button>
+            <button class="club-button" id="dsgGroupClub">DSG Group</button>
+        </div>
+
+        <div id="programmingInfo" class="club-info" style="display: none;">
+            <h2>Programming and Algorithms Clubs</h2>
+            <p>Programming and Algorithm Group, as the name suggests, is involved in
+helping students develop their algorithmic coding and surface their
+problem solving skills. The group organizes open lectures on various
+topics like Programming Languages, Data Structures and Algorithms.
+They also organize several online algorithmic contests spanning across
+the semester. Their flagship competition, Insomnia, held every year on
+Codevillage is a 24 hour contest which witnesses participation from all
+over the world, including the “red coders” who are considered to be the
+ace coders of the world. The group also organizes math contests on erdos.</p>
+        </div>
+
+        <div id="infoManagementInfo" class="club-info" style="display: none;">
+            <h2>Information Management Group</h2>
+            <p>The digital life of students at IIT Roorkee is quite comfortable thanks to
+the work of IMG. They handle the task of maintaining the institute
+website, Placement Online, and most importantly, taking care of Channel
+I, the institute’s own intranet portal. Whether it comes to downloading
+assignments from your professors, checking notices and internship
+offers, or sending anonymous roses to your significant other on
+Valentine’s day — the nifty applications designed by the talented
+members of IMG have got you covered. Constantly striving to improve
+their projects and bring new and creative ideas to life, it is a must join
+group for any technical enthusiast..</p>
+        </div>
+
+        <div id="sdsLabsInfo" class="club-info" style="display: none;">
+            <h2>SDS Labs</h2>
+            <p> SDS Labs is synonymous with cool gadgets, intelligence and perhaps
+super-human intelligence. If coding piques your interest then this is place
+wherein you will find yourself en rapport with. The recruitments take
+place in the second semester giving you ample time to brush up your
+basics in the first. The members are adroit coders working in languages
+like C++, Go, PHP, Ruby, Node.js, Python. They also conduct lectures
+and workshops regularly thus, maintaining a coding environment on the
+campus. Members of the SDS Labs are constantly in the spotlight for
+winning various coding contests, hackathons and getting selected for the
+prestigious Google Summer of Code. Apart from the developers, the
+Labs also grooms highly skillful designers. So the various applications
+launched by SDS Labs are aesthetically pleasing along with being
+functionally dynamic.</p>
+        </div>
+
+        <div id="dsgGroupInfo" class="club-info" style="display: none;">
+            <h2>DSG Group</h2>
+            <p> In an ever increasing data-driven culture, Data Science Group is a small
+and dedicated team of data enthusiasts who aim to spread the knowledge
+of data science in the campus. This group is for people who have general
+interest in various aspects of data mining, predictive modelling, big data
+and data visualisation. If you haven a keen interest in Statistics,
+Probability, Data explorations and sorting, then this is the place for you.
+The team regularly takes part in competitions on Kaggle as well as
+Analytics Vidhya, conduct fortnight meetings to discuss research papers
+and work on projects, creating and implementing analytics model. The
+group has had a humble start, and has immense potential to reach bigger
+milestones with the growing importance of data in our lives. </p>
+        </div>
+
+        <div class="club-info" id="culturalInfo">
+            <h2>Cultural Clubs</h2>
+            <button class="club-button" id="choreoSection">Choreo Section</button>
+            <button class="club-button" id="musicSection">Music Section</button>
+            <button class="club-button" id="kshitij">Kshitij</button>
+            <button class="club-button" id="fineArts">Fine Arts</button>
+        </div>
+
+        <div id="choreoSectionInfo" class="club-info" style="display: none;">
+            <h2>Choreo Section</h2>
+            <p>The Choreography and Dance section is one of the most glamorous
+sections in the cultural council. After their collaboration with Cinesec
+IITR (the viral rendition of Ed Sheeran's Shape of you), they are rather
+well known. Apart from that, their performances in Footloose are
+something you wouldn't want to miss. The audience participation in
+their performances is overwhelming. The countless hours spent
+practising and perfecting every step are quite evident from their
+exhilarating performances in Footloose and Jashn. The wide array of
+dance forms covered shows the diversity and versatility of the group.
+They were placed 2nd in the duet dance competition in the inter-IIT
+cultural meet 2016.</p>
+        </div>
+
+        <div id="musicSectionInfo" class="club-info" style="display: none;">
+            <h2>Music Section</h2>
+            <p>The Music section IITR is a group of talented musicians that satiates our
+needs for live music in a town like Roorkee where live music is a rare
+find. The music covered is diverse with an Indian classical music show -
+Swaranjali and a western music(progressive rock, jazz & blues) show -
+Dhun, there is something for everyone. Music covered includes songs by
+Porcupine Tree, Queen, Pink Floyd, Snarky Puppy, AR Rahman,
+Thaikkudam Bridge and various Coke Studio compositions. The practice
+sessions are rigorous, as is evident from the enthralling performances.
+Since it is a performing section, there is a threshold for the skill set
+required to join the section. Instrumentalists are expected to be able to
+play with others and improvise. A basic understanding of music theory
+gives an edge but isn’t a necessity. For percussionists, being able to play
+basic time signatures and keeping time is enough to get through the
+recruitments. Vocalists should be able to sing in tune and hold a note
+properly. Being able to sing harmonies helps a ton..</p>
+        </div>
+
+        <div id="kshitijInfo" class="club-info" style="display: none;">
+            <h2>Kshitij</h2>
+            <p>Kshitij is the literary magazine of IITR. It features poems and proses,
+fictional stories and write-ups in Hindi and English. The group
+mesmerises the college with the magic of literature and spoken words
+during their events like slam poetry and writing workshops, and the
+semesterly print magazine as well. .</p>
+        </div>
+
+        <div id="fineArtsInfo" class="club-info" style="display: none;">
+            <h2>Fine Arts</h2>
+            <p>The fine arts section is a part of the Hobbies Club. It is a group of talented
+artists who organise various workshops throughout the year. These
+workshops are open to everyone on the campus and aim to teach various
+forms of art ranging from Origami to Pencil Sketching. Their exhibitions
+in Shrishti featuring various sketches, paintings and models are glorious. 
+.</p>
+        </div>
+    </div>
+
+    <script>
+        const showClubInfo = (buttonId, infoId) => {
+            const button = document.getElementById(buttonId);
+            const info = document.getElementById(infoId);
+
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".club-info").forEach((club) => {
+                    club.style.display = "none";
+                });
+                info.style.display = "block";
+            });
+        };
+
+        showClubInfo("techClub", "techInfo");
+        showClubInfo("programmingClub", "programmingInfo");
+        showClubInfo("infoManagementClub", "infoManagementInfo");
+        showClubInfo("sdsLabsClub", "sdsLabsInfo");
+        showClubInfo("dsgGroupClub", "dsgGroupInfo");
+
+        showClubInfo("culturalClub", "culturalInfo");
+        showClubInfo("choreoSection", "choreoSectionInfo");
+        showClubInfo("musicSection", "musicSectionInfo");
+        showClubInfo("kshitij", "kshitijInfo");
+        showClubInfo("fineArts", "fineArtsInfo");
+    </script>
+</body>
+</html>

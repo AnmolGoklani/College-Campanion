@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deadline Reminder</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ff8d94, #ff508d);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+label, input, button {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="date"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.reminder-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed-reminder {
+    background-color: #c7ebad;
+}
+
+.checkbox {
+    margin-right: 10px;
+    flex: 0 0 30px;
+}
+
+.task {
+    text-align: left;
+    color: #333;
+    flex: 1;
+    padding-right: 20px;
+}
+
+.delete-button {
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #ff0000;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deadline Reminder</h1>
+        <div>
+            <label for="deadline">Deadline Date:</label>
+            <input type="date" id="deadline" required>
+        </div>
+
+        <div>
+            <label for="task">Add task:</label>
+            <input type="text" id="task" required>
+        </div>
+
+        <div>
+            <button id="setReminder">Set Reminder</button>
+        </div>
+
+        <ul id="reminder-list">
+            <!-- Display reminders here -->
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript for handling reminders
+        const setReminderButton = document.getElementById("setReminder");
+        const deadlineInput = document.getElementById("deadline");
+        const taskInput = document.getElementById("task");
+        const reminderList = document.getElementById("reminder-list");
+
+        // Load reminders from local storage on page load
+        loadReminders();
+
+        setReminderButton.addEventListener("click", function () {
+            const deadline = deadlineInput.value;
+            const task = taskInput.value;
+
+            if (deadline && task) {
+                createReminder(deadline, task, false);
+                saveReminders();
+                deadlineInput.value = "";
+                taskInput.value = "";
+            } else {
+                alert("Please enter both a deadline date and a task.");
+            }
+        });
+
+        function createReminder(deadline, task, isChecked) {
+            const reminderItem = document.createElement("li");
+            reminderItem.classList.add("reminder-item");
+            reminderItem.innerHTML = `
+                <span class="checkbox">
+                    <input type="checkbox" ${isChecked ? "checked" : ""}>
+                </span>
+                <span><strong>Deadline:</strong> ${deadline}</span>
+                <span class="task"><strong>Task:</strong> ${task}</span>
+                <button class="delete-button">Delete</button>
+            `;
+            reminderList.appendChild(reminderItem);
+
+            // Add an event listener for the checkbox
+            const checkbox = reminderItem.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', function () {
+                saveReminders();
+            });
+
+            // Add an event listener for the delete button
+            const deleteButton = reminderItem.querySelector('.delete-button');
+            deleteButton.addEventListener('click', function () {
+                reminderList.removeChild(reminderItem);
+                saveReminders();
+            });
+        }
+
+        function loadReminders() {
+            const storedReminders = JSON.parse(localStorage.getItem("reminders")) || [];
+            for (const reminder of storedReminders) {
+                createReminder(reminder.deadline, reminder.task, reminder.isChecked);
+            }
+        }
+
+        function saveReminders() {
+            const reminders = Array.from(reminderList.getElementsByClassName("reminder-item")).map((item) => {
+                const deadline = item.querySelector("span:nth-child(2)").textContent.replace("Deadline:", "").trim();
+                const task = item.querySelector(".task").textContent.replace("Task:", "").trim();
+                const isChecked = item.querySelector('input[type="checkbox"]').checked;
+                return { deadline, task, isChecked };
+            });
+            localStorage.setItem("reminders", JSON.stringify(reminders));
+        }
+    </script>
+</body>
+</html>

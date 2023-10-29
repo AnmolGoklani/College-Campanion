@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Chatbot</title>
+  <style>
+    /* Global styles */
+    body {
+      background: linear-gradient(135deg, #FF6B6B, #6B47FF); /* Updated background gradient */
+      font-family: 'Comic Sans MS', cursive;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Chat container */
+    #chat-container {
+      width: 400px;
+      background: #333;
+      border: 1px solid #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Chat output */
+    #chat-output {
+      max-height: 200px;
+      overflow-y: scroll;
+      border: 1px solid #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background: #444;
+    }
+
+    /* Input container */
+    #input-container {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    /* User input field */
+    #user-input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: #666;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    /* Send button */
+    #send-button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background: #ff00cc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Option buttons */
+    button {
+      padding: 5px 10px;
+      background: #33cc33;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    /* Add some margin to buttons for better spacing */
+    button + button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-output"></div>
+    <div id="input-container">
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+
+ <script>
+const chatOutput = document.getElementById('chat-output');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    sendButton.addEventListener('click', handleUserInput);
+
+    function handleUserInput() {
+      const userMessage = userInput.value;
+      appendMessage('You', userMessage);
+      processUserMessage(userMessage);
+      userInput.value = '';
+    }
+
+    function processUserMessage(userMessage) {
+      if (userMessage.toLowerCase() === 'hi') {
+        appendMessage('Chatbot', 'Hi, how can I help you?');
+        showOptions(['Know about your college', 'Course information', 'Deadline', 'Budget planner']);
+      }
+      else if (userMessage.toLowerCase() === 'deadline') {
+        // Open a new webpage for Deadline
+        openWebpage('Deadline.html');
+      }
+      else if (userMessage.toLowerCase() === 'budget planner') {
+        // Open a new webpage for Budget planner
+        openWebpage('Budget planner.html');
+      } else if (userMessage.toLowerCase() === 'know about your college') {
+        appendMessage('Chatbot', 'Sure, here are some of the things I can help with.');
+        showOptions(['IITR lingo', 'IITR map', 'Clubs at IITR']);
+      } else if (userMessage.toLowerCase() === 'course information') {
+        appendMessage('Chatbot', 'Great! Please select a course:');
+        showOptions(['CSE', 'DSAI', 'ECE', 'EE']);
+      } else if (userMessage.toLowerCase() === 'iitr lingo') {
+        // Open a new webpage for IITR lingo
+        openWebpage('iitr_lingo.html');
+      } else if (userMessage.toLowerCase() === 'iitr map') {
+        // Open a new webpage for IITR map
+        openWebpage('iitr_map.html');
+      } else if (userMessage.toLowerCase() === 'clubs at iitr') {
+        // Open a new webpage for Clubs at IITR
+        openWebpage('clubs_at_iitr.html');
+      } else if (userMessage.toLowerCase() === 'cse' || userMessage.toLowerCase() === 'dsai' || userMessage.toLowerCase() === 'ece' || userMessage.toLowerCase() === 'ee') {
+        // Handle course-specific information
+        // Open relevant course webpage, e.g., cse.html, dsai.html, ece.html, ee.html
+        openWebpage(userMessage.toLowerCase() + '.html');
+      } else {
+        // Handle other user messages here
+        appendMessage('Chatbot', 'I do not understand that request.');
+      }
+    }
+
+    function showOptions(options) {
+  	const buttons = options.map(option => {
+    	if (option.toLowerCase() === 'cse') {
+     	return `<button onclick="handleOption('CSE')">CSE</button>`;
+    } else if (option.toLowerCase() === 'DSAI') {
+     	return `<button onclick="handleOption('DSAI')">DSAI</button>`;
+    } else if (option.toLowerCase() === 'ece') {
+     	return `<button onclick="handleOption('ECE')">ECE</button>`;
+    } else if (option.toLowerCase() === 'ee') {
+     	return `<button onclick="handleOption('EE')">EE</button>`;
+    } else {
+      	return `<button onclick="handleOption('${option}')">${option}</button>`;
+    }
+    }).join(' ');
+    appendMessage('Chatbot', buttons);
+    }
+
+
+    function handleOption(option) {
+      if (option.toLowerCase() === 'cse') {
+    	window.open('https://acad.iitr.ac.in/Varsity/Academic_Programmes/UG_New/CS/Sructure.pdf', '_blank'); 
+    } else if (option.toLowerCase() === 'dsai') {
+    	window.open('https://acad.iitr.ac.in/Varsity/Academic_Programmes/UG_New/MFS/Structure_BTech_DS_AI.pdf', '_blank'); 
+    } else if (option.toLowerCase() === 'ece') {
+    	window.open('https://acad.iitr.ac.in/Varsity/Academic_Programmes/UG_New/EC/Structure_new.pdf', '_blank'); 
+    } else if (option.toLowerCase() === 'ee') {
+    	window.open('https://acad.iitr.ac.in/Varsity/Academic_Programmes/UG_New/EE/Structure.pdf', '_blank'); 
+    } else {
+    // Handle other user options
+    processUserMessage(option);
+      }
+    }
+
+
+    function openWebpage(url) {
+      // Open a new webpage in the current tab
+      window.location.href = url;
+    }
+
+    function appendMessage(sender, message) {
+      chatOutput.innerHTML += `<p><strong>${sender}:</strong> ${message}</p>`;
+    }
+  </script>
+
+</body>
+</html>
+
+
